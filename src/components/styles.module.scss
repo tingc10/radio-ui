@@ -1,0 +1,30 @@
+$buttonSize: 85px;
+
+.container {
+  text-align: center;
+  margin: 20px 0;
+}
+
+@mixin button {
+  border: none;
+  border-radius: 50%;
+  padding: 20px;
+  font-size: 2em;
+  margin: 10px 30px;
+  font-weight: 700;
+  width: $buttonSize;
+  height: $buttonSize;
+}
+
+.on {
+  @include button;
+  border: none;
+  background: #53b953;
+  color: white;
+}
+
+.off {
+  @include button;
+  color: white;
+  background: #f37878;
+}
