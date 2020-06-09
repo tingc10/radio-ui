@@ -6,11 +6,15 @@ import classnames from 'classnames';
 
 function App() {
   const [status, setStatus] = React.useState('')
+  const [timer, setTimer] = React.useState<NodeJS.Timeout | null>(null)
   const setTimedStatus = (message: string) => {
+    if (timer) {
+      clearTimeout(timer)
+    }
     setStatus(message)
-    setTimeout(() => {
+    setTimer(setTimeout(() => {
       setStatus('')
-    }, 1500)
+    }, 1500))
   }
   const handleSuccess = (res: AxiosResponse) => {
     setTimedStatus(res.data.message)
