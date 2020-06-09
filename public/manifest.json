@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Lazy App",
+  "name": "Simple UI to control radio signals to PI",
   "icons": [
     {
       "src": "favicon.ico",

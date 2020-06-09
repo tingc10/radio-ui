@@ -64,12 +64,14 @@ interface Props {
   deviceNumber: number;
   onSuccess?: (res: AxiosResponse) => void;
   onFailure?: (error: AxiosError) => void;
+  label?: string;
 }
 
 export const DeviceControls: React.SFC<Props> = ({
   deviceNumber,
   onSuccess,
   onFailure,
+  label = `Device #${deviceNumber}`
 }) => {
   const [currentView, setCurrentView] = React.useState(Views.Default);
 
@@ -171,7 +173,7 @@ export const DeviceControls: React.SFC<Props> = ({
 
   return (
     <div className={styles.container}>
-      <h1>Device #{deviceNumber}</h1>
+      <h1>{label}</h1>
       <div className={styles.buttonContainer}>
         <RenderButtons />
       </div>

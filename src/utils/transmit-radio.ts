@@ -5,8 +5,13 @@ function hoursToMilliseconds(hours: number) {
 }
 
 let requestInFlight = false;
+const raspberryIP = "192.168.0.50";
 
-export function transmitSignal(deviceNumber: number, signal: "on" | "off", hours?: number) {
+export function transmitSignal(
+  deviceNumber: number,
+  signal: "on" | "off",
+  hours?: number
+) {
   if (requestInFlight)
     return Promise.resolve<AxiosResponse>({
       data: { message: "Transmit signal already in flight" },
@@ -14,12 +19,12 @@ export function transmitSignal(deviceNumber: number, signal: "on" | "off", hours
   requestInFlight = true;
 
   return axios
-    .get("http://raspberrypi.local:3000/transmit/", {
+    .get(`http://${raspberryIP}:3000/transmit/`, {
       params: {
         deviceNumber,
         signal,
-        timeout: hours && hoursToMilliseconds(hours)
-      }
+        timeout: hours && hoursToMilliseconds(hours),
+      },
     })
     .finally(() => {
       requestInFlight = false;
@@ -27,5 +32,5 @@ export function transmitSignal(deviceNumber: number, signal: "on" | "off", hours
 }
 
 export function setTimedOperation(deviceNumber: number, hours: number) {
-  return transmitSignal(deviceNumber, 'on', hours)
+  return transmitSignal(deviceNumber, "on", hours);
 }
