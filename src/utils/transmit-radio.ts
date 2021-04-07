@@ -5,7 +5,7 @@ function hoursToMilliseconds(hours: number) {
 }
 
 let requestInFlight = false;
-const raspberryIP = "192.168.0.50";
+const raspberryIP = "192.168.1.50";
 
 export function transmitSignal(
   deviceNumber: number,
